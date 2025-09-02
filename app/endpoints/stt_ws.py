@@ -80,7 +80,7 @@ async def ws_transcribe(ws: WebSocket):
             
         # Hantera transcript events
         if result["type"] == "transcript" and ws.client_state == WebSocketState.CONNECTED:
-            last_text = await send_transcription_to_frontend(ws, result, send_json, buffers) or last_text
+            last_text = await send_transcription_to_frontend(ws, result, send_json, buffers, session_id) or last_text
 
     rt_recv_task = asyncio.create_task(rt.recv_loop(on_rt_event))
 
